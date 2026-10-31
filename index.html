@@ -1,0 +1,1288 @@
+<title>Royal Rugs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap">
+
+<style>
+  :root{
+    color-scheme: light;
+    --cream:#F6EAD9;
+    --shell:#FCF7EF;
+    --plate:#FFFFFF;
+    --oxblood:#55020C;
+    --wine:#7A1421;
+    --ink:#2B1A16;
+    --body:#5A4A41;
+    --muted:#7A6450;
+    --line:#E6D9C6;
+    --line-soft:#F0E6D6;
+    --brass:#A9803F;
+    --brass-ink:#7E5C2B;
+    --gutter: clamp(16px, 4vw, 52px);
+    --maxw: 1240px;
+    --ff-display:'Cormorant Garamond', 'Hoefler Text', Georgia, serif;
+    --ff-body:'Jost', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
+  }
+
+  *{box-sizing:border-box}
+
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--body);
+    font-family:var(--ff-body);
+    font-weight:300;
+    font-size:16px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family:var(--ff-display);
+    font-weight:300;
+    color:var(--ink);
+    margin:0;
+    text-wrap:balance;
+    line-height:1.05;
+  }
+  p{margin:0}
+  a{color:var(--oxblood);text-decoration:none}
+  a:hover{color:var(--wine)}
+  img{display:block}
+  button{font-family:var(--ff-body);cursor:pointer}
+  input,select,textarea{font-family:var(--ff-body);font-size:15px}
+
+  :focus-visible{outline:2px solid var(--oxblood);outline-offset:3px}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  }
+
+  /* ---------- primitives ---------- */
+  .wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+  .eyebrow{
+    font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);
+  }
+  .rule{height:1px;background:var(--line);border:0;margin:0}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    min-height:52px;padding:0 30px;border:1px solid transparent;
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    background:var(--oxblood);color:var(--cream);
+    transition:background .18s ease;
+  }
+  .btn:hover{background:var(--wine);color:var(--cream)}
+  .btn--ghost{background:transparent;border-color:#C9B69B;color:var(--ink)}
+  .btn--ghost:hover{background:#EFE2CD;color:var(--ink)}
+  .btn--pale{background:var(--cream);color:var(--oxblood)}
+  .btn--pale:hover{background:#FFF7E9;color:var(--oxblood)}
+  .btn--block{width:100%}
+
+  .arrow{flex:none}
+
+  .band{padding-block:clamp(56px, 7vw, 96px)}
+  .band--shell{background:var(--shell);border-block:1px solid var(--line)}
+  .band--deep{background:var(--oxblood);color:#E6CDB6}
+  .band--deep h2{color:var(--cream)}
+
+  .section-head{display:flex;flex-wrap:wrap;align-items:flex-end;gap:24px 40px;margin-bottom:40px}
+  .section-head > :first-child{flex:1 1 320px}
+  .section-head h2{font-size:clamp(34px, 4.2vw, 52px);margin-top:14px}
+  .section-head p{flex:0 1 380px;font-size:14px;line-height:1.8}
+
+  .textlink{
+    display:inline-flex;align-items:center;gap:10px;padding-bottom:7px;
+    border-bottom:1px solid #C9B69B;
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  }
+
+  /* ---------- header ---------- */
+  .topbar{background:var(--oxblood);color:#EBD7BE;text-align:center;padding-block:11px}
+  .topbar p{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase}
+
+  .masthead{
+    position:sticky;top:env(safe-area-inset-top, 0px);z-index:40;
+    background:var(--shell);border-bottom:1px solid var(--line);
+  }
+  .masthead__in{display:flex;align-items:center;gap:20px;min-height:84px}
+  .brand{display:flex;align-items:center;gap:12px;flex:none}
+  .brand img{width:44px;height:41px;object-fit:contain}
+  .brand__name{
+    font-family:var(--ff-display);font-size:21px;font-weight:500;
+    letter-spacing:.24em;color:var(--oxblood);line-height:1;
+  }
+  .brand__tag{display:block;margin-top:4px;font-size:7.5px;letter-spacing:.3em;color:var(--muted)}
+
+  .nav{display:flex;align-items:center;gap:30px;margin-left:auto}
+  .nav a{
+    font-size:11.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--ink);
+    padding-block:6px;border-bottom:1px solid transparent;
+  }
+  .nav a:hover{color:var(--oxblood)}
+  .nav a[aria-current="page"]{color:var(--oxblood);border-bottom-color:var(--oxblood)}
+  .masthead .btn{min-height:44px;padding:0 22px;flex:none}
+
+  .burger{
+    display:none;margin-left:auto;width:44px;height:44px;
+    align-items:center;justify-content:center;background:transparent;border:0;
+  }
+
+  @media (max-width: 1040px){
+    .nav{
+      display:none;position:absolute;left:0;right:0;top:100%;
+      flex-direction:column;align-items:stretch;gap:0;
+      background:var(--shell);border-bottom:1px solid var(--line);
+      padding:8px var(--gutter) 20px;
+    }
+    .nav.is-open{display:flex}
+    .nav a{padding-block:14px;border-bottom:1px solid var(--line-soft)}
+    .burger{display:flex}
+    .masthead .btn{display:none}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;isolation:isolate;overflow:hidden;
+    min-height:clamp(520px, 72vh, 760px);
+    display:flex;align-items:center;
+    background:#1A0B09;
+  }
+  .hero__slides{position:absolute;inset:0;z-index:-2}
+  .hero__slide{
+    position:absolute;inset:0;background-size:cover;background-position:center;
+    opacity:0;transition:opacity 1s ease;
+  }
+  .hero__slide.is-on{opacity:1}
+  .hero::after{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(100deg, rgba(20,8,7,.84) 0%, rgba(20,8,7,.62) 36%, rgba(20,8,7,.20) 70%, rgba(20,8,7,.36) 100%);
+  }
+  .hero__in{width:100%;padding-block:clamp(54px,8vw,86px)}
+  .hero .eyebrow{color:#D9BFA4}
+  .hero h1{
+    margin-top:22px;font-size:clamp(44px, 6.4vw, 84px);line-height:.98;letter-spacing:-.01em;
+    color:#FBF2E4;
+  }
+  .hero h1 em{font-style:italic;color:#E8B9A0}
+  .hero__lede{margin-top:24px;max-width:44ch;font-size:16.5px;line-height:1.78;color:#E3CDBA}
+  .hero__cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px}
+  .hero .btn--ghost{border-color:rgba(251,242,228,.5);color:#FBF2E4}
+  .hero .btn--ghost:hover{background:rgba(251,242,228,.14);color:#FBF2E4}
+
+  .fband{
+    position:relative;isolation:isolate;overflow:hidden;
+    min-height:clamp(340px,42vh,440px);display:flex;align-items:center;
+    background:#1A0B09 center/cover no-repeat;
+    text-align:center;
+  }
+  .fband::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(20,8,7,.56)}
+  .fband__in{width:100%;padding-block:clamp(44px,6vw,70px)}
+  .fband h2{color:#FBF2E4;font-size:clamp(30px,4vw,46px);max-width:20ch;margin-inline:auto}
+  .fband p{margin-top:18px;max-width:58ch;margin-inline:auto;font-size:15px;line-height:1.8;color:#E3CDBA}
+  .fband .btn{margin-top:28px}
+
+  .hero__credit{
+    position:absolute;right:var(--gutter);bottom:26px;z-index:2;text-align:right;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#E3CDBA;
+  }
+  .hero__credit a{color:#E3CDBA;border-bottom:1px solid rgba(227,205,186,.45);padding-bottom:3px}
+  .hero__credit a:hover{color:#FFF;border-bottom-color:#FFF}
+
+  .hero__dots{
+    position:absolute;left:var(--gutter);bottom:26px;z-index:2;display:flex;gap:9px;
+  }
+  .hero__dot{
+    width:34px;height:3px;padding:0;border:0;background:rgba(251,242,228,.34);cursor:pointer;
+  }
+  .hero__dot[aria-current="true"]{background:#FBF2E4}
+  .hero__arrows{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:space-between;pointer-events:none;padding-inline:8px}
+  .hero__arrow{
+    pointer-events:auto;width:48px;height:48px;display:flex;align-items:center;justify-content:center;
+    background:transparent;border:0;color:#FBF2E4;opacity:.7;
+  }
+  .hero__arrow:hover{opacity:1}
+  @media (max-width: 760px){
+    .hero__arrows{display:none}
+    .hero__credit{position:static;text-align:left;margin-top:30px;padding-bottom:4px}
+    .hero__dots{bottom:18px}
+  }
+
+  /* ---------- plates ---------- */
+  .plate{
+    background:var(--plate);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    padding:22px;aspect-ratio:4/3;max-width:100%;overflow:hidden;
+  }
+  .plate img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+  .plate--tall{aspect-ratio:3/3.4;padding:30px}
+  .plate--thumb{aspect-ratio:1/1;padding:9px}
+
+  /* ---------- assurances ---------- */
+  .assure{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+  .assure > div{padding:0 34px;border-left:1px solid var(--line)}
+  .assure > div:first-child{padding-left:0;border-left:0}
+  .assure > div:last-child{padding-right:0}
+  .assure h3{font-size:24px;margin-bottom:8px}
+  .assure p{font-size:13px;line-height:1.65}
+  @media (max-width: 920px){
+    .assure{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 0}
+    .assure > div:nth-child(odd){padding-left:0;border-left:0}
+    .assure > div:nth-child(even){padding-right:0}
+  }
+  @media (max-width: 520px){
+    .assure{grid-template-columns:1fr;gap:24px}
+    .assure > div{padding:0 !important;border-left:0}
+  }
+
+  /* ---------- cards ---------- */
+  .grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fill,minmax(258px,1fr))}
+  .grid--4{grid-template-columns:repeat(auto-fill,minmax(248px,1fr))}
+  .grid--3{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+
+  .card{display:flex;flex-direction:column;background:var(--plate);border:1px solid var(--line);transition:border-color .18s ease}
+  .card:hover{border-color:#C9A98C}
+  .card .plate{border:0;border-bottom:1px solid var(--line-soft)}
+  .card__body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:7px;flex:1}
+  .card__top{display:flex;align-items:baseline;gap:10px}
+  .card__name{flex:1;font-family:var(--ff-display);font-size:23px;line-height:1.15;color:var(--ink)}
+  .card__code{font-size:9.5px;letter-spacing:.15em;color:var(--muted);white-space:nowrap}
+  .card__meta{font-size:12px;color:var(--body)}
+  .card__qlty{font-size:12px;color:var(--muted)}
+  .card__cta{
+    margin-top:auto;padding-top:12px;display:flex;align-items:center;gap:8px;
+    font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--oxblood);
+  }
+  @media (min-width: 760px){
+    .card.is-runner{grid-column:span 2}
+    .card.is-runner .plate{aspect-ratio:16/7}
+  }
+
+  /* ---------- filters ---------- */
+  .filters{display:flex;flex-wrap:wrap;align-items:center;gap:16px 30px}
+  .fgroup{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+  .fgroup__label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+  .pills{display:flex;flex-wrap:wrap;gap:7px}
+  .pill{
+    min-height:42px;padding:0 16px;background:var(--plate);border:1px solid #D8C7AE;color:var(--body);
+    font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  }
+  .pill:hover{border-color:#B9A88E}
+  .pill[aria-pressed="true"]{background:var(--oxblood);border-color:var(--oxblood);color:var(--cream)}
+  .count{margin-left:auto;font-size:12.5px;color:var(--muted)}
+  .search{
+    min-height:44px;min-width:230px;padding:0 14px;background:var(--plate);
+    border:1px solid #D8C7AE;color:var(--ink);
+  }
+  @media (max-width: 620px){ .count{margin-left:0} .search{width:100%} }
+
+  /* ---------- detail ---------- */
+  .detail{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(28px,4vw,56px);align-items:start}
+  @media (max-width: 940px){ .detail{grid-template-columns:1fr} }
+
+  .shots{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+  .shot-empty{
+    aspect-ratio:1/1;background:#FBF5EB;border:1px dashed #C9B69B;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
+    font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:center;padding:6px;
+  }
+
+  .spec{margin:26px 0 0;display:flex;flex-direction:column}
+  .spec__row{display:flex;flex-wrap:wrap;gap:6px 20px;padding:14px 0;border-bottom:1px solid #E2D2BC}
+  .spec__row dt{flex:0 0 168px;font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--muted)}
+  .spec__row dd{flex:1 1 200px;margin:0;font-size:14.5px;color:#3D322C}
+
+  /* ---------- forms ---------- */
+  .panel{background:var(--shell);border:1px solid var(--line);padding:clamp(22px,3vw,32px)}
+  .panel--plain{background:var(--plate)}
+  .panel h3{font-size:28px}
+  .field{display:flex;flex-direction:column;gap:8px}
+  .field > span{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#6B5B50}
+  .field input,.field select,.field textarea{
+    min-height:48px;padding:11px 14px;background:var(--plate);border:1px solid #DCCBB2;color:var(--ink);
+  }
+  .field textarea{min-height:96px;resize:vertical;line-height:1.6}
+  .field input:disabled{background:#F2EADC;color:var(--muted)}
+  .row{display:grid;gap:14px}
+  .row--2{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+  .row--3{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+  .formstack{display:flex;flex-direction:column;gap:16px;margin-top:20px}
+  .fineprint{font-size:11.5px;color:var(--muted);line-height:1.65}
+
+  .swatches{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+  .swatch{width:44px;height:44px;border-radius:50%;border:1px solid #C9B69B;padding:0}
+  .swatch[aria-pressed="true"]{box-shadow:0 0 0 2px var(--shell),0 0 0 3px var(--oxblood)}
+
+  .matcards{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-top:18px}
+  .matcard{
+    text-align:left;padding:16px 18px;background:#FDFAF4;border:1px solid #D8C7AE;color:#3D322C;
+  }
+  .matcard[aria-pressed="true"]{background:var(--oxblood);border-color:var(--oxblood);color:var(--cream)}
+  .matcard b{display:block;font-family:var(--ff-display);font-size:21px;font-weight:400}
+  .matcard small{display:block;margin-top:4px;font-size:11.5px;line-height:1.5;opacity:.85}
+
+  /* ---------- custom builder ---------- */
+  .builder{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(24px,3vw,44px);align-items:start}
+  @media (max-width: 1000px){ .builder{grid-template-columns:1fr} }
+  .steps{display:flex;flex-direction:column;gap:22px}
+  .step__no{font-family:var(--ff-display);font-style:italic;font-size:16px;color:var(--brass-ink)}
+  .step h3{margin-top:5px;font-size:28px;font-weight:400}
+
+  .stage{
+    margin-top:20px;height:290px;background:var(--plate);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;padding:18px;
+  }
+  .ghost{
+    background:linear-gradient(135deg,#9FA9AE 0%,#D8D2C6 45%,#6E7A80 100%);
+    border:1px solid #B9A88E;
+  }
+  .stage-size{margin-top:14px;text-align:center;font-family:var(--ff-display);font-size:26px;color:var(--ink)}
+  .stage-area{margin-top:3px;text-align:center;font-size:12px;color:var(--muted)}
+
+  /* ---------- result ---------- */
+  .result{margin-top:18px;border:1px solid var(--brass);background:#FBF3E6;padding:20px}
+  .result h4{font-family:var(--ff-display);font-size:22px;margin-bottom:10px}
+  .result pre{
+    margin:0;white-space:pre-wrap;word-break:break-word;
+    font-family:var(--ff-body);font-size:13.5px;line-height:1.7;color:#3D322C;
+  }
+  .result__actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .contactline{
+    display:flex;flex-wrap:wrap;align-items:center;gap:10px;
+    font-size:14px;color:#3D322C;
+  }
+  .contactline code{
+    font-family:var(--ff-body);background:var(--plate);border:1px solid var(--line);
+    padding:6px 10px;user-select:all;
+  }
+  .mini{
+    min-height:40px;padding:0 14px;background:transparent;border:1px solid #C9B69B;
+    color:var(--ink);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  }
+  .mini:hover{background:#EFE2CD}
+
+  /* ---------- craft ---------- */
+  .craft{display:grid;grid-template-columns:280px 1fr;gap:clamp(28px,4vw,72px);align-items:start}
+  @media (max-width: 860px){ .craft{grid-template-columns:1fr} }
+  .steps4{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:28px;margin-top:38px}
+  .steps4 > div{padding-top:20px;border-top:1px solid #DCCBB2}
+  .steps4 h4{font-size:25px;margin:12px 0 10px}
+  .steps4 p{font-size:13px;line-height:1.72}
+
+  /* ---------- footer ---------- */
+  .foot{background:var(--ink);color:#B39E86;padding-block:clamp(44px,5vw,64px) 0}
+  .foot__cols{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.1fr;gap:36px}
+  @media (max-width: 860px){ .foot__cols{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))} }
+  .foot h4{color:var(--cream);font-family:var(--ff-display);font-size:24px;font-weight:500;letter-spacing:.24em}
+  .foot .tag{display:block;margin-top:10px;font-size:8.5px;letter-spacing:.3em}
+  .foot__col-title{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#A08B74;margin-bottom:14px}
+  .foot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+  .foot a,.foot li{font-size:13.5px;color:#E2D3BE}
+  .foot a:hover{color:#FFF}
+  .foot__base{
+    margin-top:40px;padding-block:20px 28px;border-top:1px solid #443129;
+    display:flex;flex-wrap:wrap;gap:10px 24px;font-size:11.5px;color:#A08B74;
+  }
+  .foot__base span:first-child{flex:1}
+
+  .skip{position:absolute;left:-9999px}
+  .skip:focus{left:var(--gutter);top:8px;z-index:60;background:var(--cream);padding:10px 16px}
+</style>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="topbar">
+  <p>Hand-knotted to order &nbsp;·&nbsp; Any size, any shape &nbsp;·&nbsp; Enquire for trade pricing</p>
+</div>
+
+<header class="masthead">
+  <div class="wrap masthead__in">
+    <a class="brand" href="#home">
+      <img src="img/logo-mark.png" alt="">
+      <span>
+        <span class="brand__name">ROYAL RUGS</span>
+        <span class="brand__tag">CARPETS | RUGS | &amp; MORE</span>
+      </span>
+    </a>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
+      <svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="#2B1A16" stroke-width="1.4" aria-hidden="true"><path d="M0 1h22M0 7h22M0 13h22"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#collection" data-route="collection">Collection</a>
+      <a href="#custom" data-route="custom">Custom rugs</a>
+      <a href="#craft" data-route="craft">The craft</a>
+      <a href="#contact" data-route="contact">Contact</a>
+    </nav>
+    <a class="btn" href="#custom">Enquire now</a>
+  </div>
+</header>
+
+<main id="main"></main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__cols">
+      <div>
+        <h4>ROYAL RUGS</h4>
+        <span class="tag">CARPETS | RUGS | &amp; MORE</span>
+        <p style="margin-top:16px;font-size:13.5px;line-height:1.8">Hand-knotted carpets and rugs, woven to order for homes, hospitality and trade.</p>
+      </div>
+      <div>
+        <p class="foot__col-title">Collection</p>
+        <ul>
+          <li><a href="#collection">All pieces</a></li>
+          <li><a href="#collection">Abstract &amp; modern</a></li>
+          <li><a href="#collection">Traditional</a></li>
+          <li><a href="#collection">Rounds &amp; runners</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot__col-title">Services</p>
+        <ul>
+          <li><a href="#custom">Custom sizes</a></li>
+          <li><a href="#custom">Bespoke colourways</a></li>
+          <li><a href="#contact">Trade &amp; contract</a></li>
+          <li><a href="#craft">The craft</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot__col-title">Enquiries</p>
+        <ul>
+          <li>[YOUR PHONE]</li>
+          <li>[YOUR EMAIL]</li>
+          <li>[YOUR SHOWROOM ADDRESS]</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__base">
+      <span>© [YEAR] Royal Rugs. All rights reserved.</span>
+      <span>Enquiry-only — no online checkout</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* =======================================================================
+     CONFIG — fill these in and the enquiry buttons start working for real.
+     whatsapp: digits only, with country code, e.g. '919876543210'
+     ======================================================================= */
+  var CONFIG = {
+    businessName: 'Royal Rugs',
+    whatsapp: '',                 // e.g. '919876543210'
+    email: '[YOUR EMAIL]',
+    phone: '[YOUR PHONE]',
+    address: '[YOUR SHOWROOM ADDRESS]'
+  };
+
+  var ARROW = '<svg class="arrow" width="17" height="10" viewBox="0 0 17 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0 5h15.5M11.5 1l4.3 4-4.3 4"/></svg>';
+  var TICK = '<svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#A9803F" stroke-width="1.4" aria-hidden="true"><path d="M1 7.4l4.2 4L13 2.6"/></svg>';
+  var CAM = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A9803F" stroke-width="1.2" aria-hidden="true"><path d="M3 8h4l2-3h6l2 3h4v11H3z"/><circle cx="12" cy="13" r="3.6"/></svg>';
+
+  /* ---------------- catalogue: read off the supplied catalogue sheets ---------------- */
+  var RUGS = [
+    {id:'r01', img:'img/r01.jpg', name:'Glacier', code:'RR-718', cno:'J-681', ft:'8.0 × 10.0', m:'2.44 × 3.05', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Rectangle', band:'Large', family:'Abstract', blurb:'A weathered field in glacial blues, bone and graphite. Silk highlights catch the light against a wool ground, so the pattern shifts as you cross the room.'},
+    {id:'r02', img:'img/r02.jpg', name:'Indigo Drift', code:'RR-720', cno:'J-680', ft:'7.11 × 10.0', m:'2.41 × 3.05', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Rectangle', band:'Large', family:'Abstract', blurb:'Horizontal weather in stone and ink, with indigo pooling along one edge. Quiet from a distance, full of incident up close.'},
+    {id:'r03', img:'img/r03.jpg', name:'Ravine', code:'C 713', cno:'713', ft:'8.0 × 10.1', m:'2.44 × 3.07', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Rectangle', band:'Large', family:'Abstract', blurb:'Pale blue and bone broken by a deep oxblood seam at the base — the closest piece in the collection to the house colour.'},
+    {id:'r04', img:'img/r04.jpg', name:'Gilded Ash', code:'C 736', cno:'736', ft:'8.0 × 10.1', m:'2.44 × 3.07', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Rectangle', band:'Large', family:'Abstract', blurb:'Charcoal and ash with gold running through it like light through a gap. The most graphic piece on the loom.'},
+    {id:'r05', img:'img/r05.jpg', name:'Quarry', code:'RR-710', cno:'J-679', ft:'8.0 × 10.3', m:'2.44 × 3.12', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Rectangle', band:'Large', family:'Abstract', blurb:'Blocks of cut stone in blue-grey and umber. Reads almost architectural under a large table.'},
+    {id:'r06', img:'img/r06.jpg', name:'Mosaic Garden', code:'C 721', cno:'721', ft:'7.10 × 10.4', m:'2.40 × 3.15', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Rectangle', band:'Large', family:'Transitional', blurb:'A traditional garden plan, deliberately faded panel by panel. Coral, slate and bone — the bridge piece between the classic and modern sides of the collection.'},
+    {id:'r07', img:'img/r07.jpg', name:'Dune Weave', code:'C 733', cno:'733', ft:'8.0 × 9.11', m:'2.44 × 3.02', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Rectangle', band:'Large', family:'Abstract', blurb:'The softest thing here: sand, oat and faint grey in a close, even weave. A ground rug rather than a statement rug.'},
+    {id:'r08', img:'img/r08.jpg', name:'Court Medallion', code:'C 853', cno:'853', ft:'9.7 × 9.6', m:'2.92 × 2.90', qlty:'9/9 pure silk', mat:'Pure silk', shape:'Round', band:'Large', family:'Transitional', blurb:'A classical medallion dissolved into speckle and shadow, woven in pure silk at nearly ten feet across. The showpiece round.'},
+    {id:'r09', img:'img/r09.jpg', name:'Verdant Panels', code:'C 597', cno:'597', ft:'3.11 × 6.0', m:'1.20 × 1.83', qlty:'9/9 bamboo silk', mat:'Bamboo silk', shape:'Rectangle', band:'Small', family:'Abstract', blurb:'Two weathered panels in burgundy and moss divided by a seam of blue. Bamboo silk gives it a high, liquid sheen.'},
+    {id:'r10', img:'img/r10.jpg', name:'Grand Atelier', code:'RR-110', cno:'J-658', ft:'11.11 × 15.0', m:'3.64 × 4.58', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Rectangle', band:'Oversize', family:'Abstract', blurb:'The largest piece on record at nearly twelve by fifteen feet — a full room of weathered grey, built for a hall or a double-height space.'},
+    {id:'r11', img:'img/r11.jpg', name:'Tidewater', code:'C 608', cno:'608', ft:'3.11 × 6.1', m:'1.20 × 1.85', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Rectangle', band:'Small', family:'Abstract', blurb:'Sage, bone and a single channel of cobalt down the middle. Small enough for a bedside or an entrance.'},
+    {id:'r12', img:'img/r12.jpg', name:'Ember Field', code:'C 598', cno:'598', ft:'4.0 × 6.0', m:'1.23 × 1.83', qlty:'9/9 bamboo silk', mat:'Bamboo silk', shape:'Rectangle', band:'Small', family:'Abstract', blurb:'Rust and slate scattered over bone, like a fire seen through smoke. The warmest of the small pieces.'},
+    {id:'r13', img:'img/r13.jpg', name:'Lagoon', code:'C 614', cno:'614', ft:'4.0 × 6.2', m:'1.23 × 1.88', qlty:'9/9 bamboo silk', mat:'Bamboo silk', shape:'Rectangle', band:'Small', family:'Abstract', blurb:'Teal and sea-glass green breaking against a burgundy shore. The most colourful piece in the collection.'},
+    {id:'r14', img:'img/r14.jpg', name:'Aureate', code:'C 616', cno:'616', ft:'6.0 × 9.1', m:'1.83 × 2.77', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Rectangle', band:'Medium', family:'Abstract', blurb:'Cool grey worked over with old gold. Sits well in a room that already has brass or warm wood in it.'},
+    {id:'r15', img:'img/r15.jpg', name:'Mist Line', code:'C 612', cno:'612', ft:'4.0 × 6.1', m:'1.23 × 1.85', qlty:'9/9 bamboo silk', mat:'Bamboo silk', shape:'Rectangle', band:'Small', family:'Abstract', blurb:'Horizontal bands of fog and pale blue. The quietest small rug here — useful where the furniture is doing the talking.'},
+    {id:'r16', img:'img/r16.jpg', name:'Slate Ochre', code:'C 620', cno:'620', ft:'5.11 × 9.1', m:'1.80 × 2.77', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Rectangle', band:'Medium', family:'Abstract', blurb:'Slate washed with ochre and a trace of rust. A standard six-by-nine that suits a living room without dominating it.'},
+    {id:'r17', img:'img/r17.jpg', name:'Corridor Rust', code:'C 638', cno:'638', ft:'2.5 × 10.3', m:'0.74 × 3.12', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Runner', band:'Small', family:'Abstract', blurb:'Ten feet of weathered grey with rust breaking through. Cut for a long hallway or a galley kitchen.'},
+    {id:'r18', img:'img/r18.jpg', name:'Faded Medallion', code:'C 618', cno:'618', ft:'5.11 × 9.3', m:'1.80 × 2.82', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Rectangle', band:'Medium', family:'Transitional', blurb:'A classical medallion left half-erased in the wash, with mauve warmth at the centre and grey at the edges.'},
+    {id:'r19', img:'img/r19.jpg', name:'Copper Vein', code:'C 642', cno:'642', ft:'2.7 × 10.5', m:'0.78 × 3.18', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Runner', band:'Small', family:'Abstract', blurb:'The longest runner on record at ten and a half feet, with copper running through stone like ore in rock.'},
+    {id:'r20', img:'img/r20.jpg', name:'Azure Corridor', code:'C 683', cno:'683', ft:'2.7 × 10.3', m:'0.79 × 3.12', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Runner', band:'Small', family:'Abstract', blurb:'Cool blue and silver-grey over the full length. The runner that pairs with Glacier and Indigo Drift.'},
+    {id:'r21', img:'img/r21.jpg', name:'Solstice', code:'C 680', cno:'680', ft:'4.11 × 5.0', m:'1.50 × 1.53', qlty:'9/9 bamboo silk', mat:'Bamboo silk', shape:'Round', band:'Small', family:'Abstract', blurb:'A five-foot round in grey and pale gold. The small round — good under a café table or in a bay window.'},
+    {id:'r22', img:'img/r22.jpg', name:'Blush Orbit', code:'C 689', cno:'689', ft:'7.11 × 7.11', m:'2.42 × 2.42', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Round', band:'Medium', family:'Abstract', blurb:'Eight feet across, in blue-grey with blush surfacing on one side. The softest round in the collection.'},
+    {id:'r23', img:'img/r23.jpg', name:'Foundry', code:'C 652', cno:'652', ft:'2.7 × 10.2', m:'0.79 × 3.10', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Runner', band:'Small', family:'Abstract', blurb:'Charcoal and hot rust over ten feet — the darkest and most industrial of the four runners.'},
+    {id:'r24', img:'img/r24.jpg', name:'Nightfall', code:'C 697', cno:'697', ft:'9.0 × 12.1', m:'2.75 × 3.68', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Rectangle', band:'Large', family:'Abstract', blurb:'Ivory on the left giving way to deep navy on the right, as though the light is going out across the floor. A nine-by-twelve for a formal room.'},
+    {id:'r25', img:'img/r25.jpg', name:'Terracotta Sky', code:'C 698', cno:'698', ft:'8.10 × 12.1', m:'2.70 × 3.68', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Rectangle', band:'Large', family:'Abstract', blurb:'Pale sky with terracotta weathering up from the lower edge. The warm counterpart to Nightfall at the same size.'},
+    {id:'r26', img:'img/r26.jpg', name:'Halo', code:'C 692', cno:'692', ft:'7.10 × 7.10', m:'2.39 × 2.39', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Round', band:'Medium', family:'Abstract', blurb:'An eight-foot round in grey and warm gold, worn lighter toward the centre. Works under a round dining table.'},
+    {id:'r27', img:'img/r27.jpg', name:'Isfahan Ivory', code:'TRAD-01', cno:'[C.NO TBC]', ft:'9.0 × 12.0', m:'2.74 × 3.66', qlty:'Hand-knotted · [QUALITY TBC]', mat:'Wool + silk', shape:'Rectangle', band:'Large', family:'Traditional', blurb:'A classical all-over floral on an ivory ground, with a deep rust border. Nine by twelve, in the traditional manner.'},
+    {id:'r28', img:'img/r28.jpg', name:'Tectonic', code:'C 708', cno:'708', ft:'6.5 × 10.2', m:'1.90 × 3.10', qlty:'9/9 silk + wool', mat:'Silk + wool', shape:'Rectangle', band:'Medium', family:'Abstract', blurb:'Broken plates of navy and stone with faint fault lines between them. The most structural design in the collection.'},
+    {id:'r29', img:'img/r29.jpg', name:'Silk Flower', code:'TRAD-02', cno:'[C.NO TBC]', ft:'9.0 × 12.0', m:'2.74 × 3.66', qlty:'Hand-knotted · [QUALITY TBC]', mat:'Wool + silk', shape:'Rectangle', band:'Large', family:'Traditional', blurb:'A fine floral field in old gold and soft green on cream, with silk highlights through the blooms.'},
+    {id:'r30', img:'img/r30.jpg', name:'Kashan Bloom', code:'TRAD-03', cno:'[C.NO TBC]', ft:'9.0 × 12.0', m:'2.74 × 3.66', qlty:'Hand-knotted · [QUALITY TBC]', mat:'Wool + silk', shape:'Rectangle', band:'Large', family:'Traditional', blurb:'A dense classical bloom in madder and sand on an ivory ground, framed by a multiple border.'}
+  ];
+
+  var byId = {};
+  RUGS.forEach(function (r) { byId[r.id] = r; });
+
+  /* Hero: mood photography. These are atmosphere shots, NOT pictures of
+     catalogue pieces — nothing here is labelled as a specific rug for sale.
+     Replace with real photography of your own rugs when it is shot. */
+  var HERO = [
+    { img: 'img/banner-courtyard.jpg', pos: 'center 62%', name: 'The courtyard',
+      alt: 'A large hand-knotted rug laid out on sunlit grass in a walled courtyard at golden hour' },
+    { img: 'img/banner-rooftop.jpg', pos: 'center 55%', name: 'At dusk',
+      alt: 'A hand-knotted rug draped over a carved stone parapet at sunset, a historic city below' },
+    { img: 'img/banner-hall.jpg', pos: 'center 58%', name: 'The hall',
+      alt: 'A long runner down a stone-floored hallway, evening light falling through an open door' }
+  ];
+
+  /* ---------------- helpers ---------------- */
+  var $ = function (sel, root) { return (root || document).querySelector(sel); };
+  var main = $('#main');
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  function sizeLine(r) { return r.ft + ' ft · ' + r.m + ' m'; }
+
+  function cardHTML(r) {
+    return '<a class="card' + (r.shape === 'Runner' ? ' is-runner' : '') + '" href="#' + r.id + '">' +
+      '<span class="plate"><img src="' + r.img + '" alt="' + esc(r.name + ', ' + r.ft + ' feet, hand-knotted') + '" loading="lazy"></span>' +
+      '<span class="card__body">' +
+        '<span class="card__top"><span class="card__name">' + esc(r.name) + '</span><span class="card__code">' + esc(r.code) + '</span></span>' +
+        '<span class="card__meta">' + esc(sizeLine(r)) + '</span>' +
+        '<span class="card__qlty">' + esc(r.qlty) + '</span>' +
+        '<span class="card__cta">Enquire ' + ARROW + '</span>' +
+      '</span>' +
+    '</a>';
+  }
+
+  /* ---------------- enquiry composer ---------------- */
+  function composeMessage(lines) {
+    var out = ['Enquiry via the ' + CONFIG.businessName + ' website', ''];
+    lines.forEach(function (l) {
+      if (l[1] && String(l[1]).trim()) { out.push(l[0] + ': ' + String(l[1]).trim()); }
+    });
+    return out.join('\n');
+  }
+
+  function resultHTML(msg) {
+    var wa = CONFIG.whatsapp
+      ? '<a class="btn" href="https://wa.me/' + encodeURIComponent(CONFIG.whatsapp) + '?text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener">Send on WhatsApp ' + ARROW + '</a>'
+      : '';
+    var note = CONFIG.whatsapp
+      ? ''
+      : '<p class="fineprint" style="margin-top:14px">Add a WhatsApp number to <code>CONFIG.whatsapp</code> in the page source and this panel gains a one-tap send button. Until then, copy the text above.</p>';
+    return '<div class="result" role="status">' +
+      '<h4>Your enquiry is ready</h4>' +
+      '<pre id="enq-text">' + esc(msg) + '</pre>' +
+      '<div class="result__actions">' +
+        '<button class="mini" type="button" data-copy="#enq-text">Copy enquiry</button>' + wa +
+      '</div>' +
+      '<div style="margin-top:16px;display:flex;flex-direction:column;gap:10px">' +
+        '<span class="contactline">Email <code>' + esc(CONFIG.email) + '</code><button class="mini" type="button" data-copy-text="' + esc(CONFIG.email) + '">Copy</button></span>' +
+        '<span class="contactline">Phone <code>' + esc(CONFIG.phone) + '</code><button class="mini" type="button" data-copy-text="' + esc(CONFIG.phone) + '">Copy</button></span>' +
+      '</div>' + note +
+    '</div>';
+  }
+
+  function copyText(text, btn) {
+    var done = function () {
+      var old = btn.textContent;
+      btn.textContent = 'Copied';
+      setTimeout(function () { btn.textContent = old; }, 1600);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { selectFallback(text, btn); });
+    } else {
+      selectFallback(text, btn);
+    }
+  }
+
+  function selectFallback(text, btn) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+    btn.textContent = 'Copied';
+    setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+  }
+
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-copy],[data-copy-text]');
+    if (!b) { return; }
+    var txt = b.hasAttribute('data-copy-text')
+      ? b.getAttribute('data-copy-text')
+      : ($(b.getAttribute('data-copy')) || {}).textContent || '';
+    copyText(txt, b);
+  });
+
+  /* ---------------- shared blocks ---------------- */
+  function enquiryFormHTML(id, opts) {
+    opts = opts || {};
+    return '<form class="panel" id="' + id + '" novalidate>' +
+      '<h3>' + esc(opts.title || 'Send an enquiry') + '</h3>' +
+      '<p class="fineprint" style="margin-top:8px">' + esc(opts.note || 'Tell us your size and we will come back with price and lead time.') + '</p>' +
+      '<div class="formstack">' +
+        (opts.subject ? '<input type="hidden" id="' + id + '-subject" value="' + esc(opts.subject) + '">' : '') +
+        '<div class="row row--2">' +
+          '<label class="field"><span>Your name</span><input id="' + id + '-name" type="text" autocomplete="name" placeholder="Full name"></label>' +
+          '<label class="field"><span>Email or WhatsApp</span><input id="' + id + '-contact" type="text" placeholder="How we reach you"></label>' +
+        '</div>' +
+        '<div class="row row--3">' +
+          '<label class="field"><span>Width</span><input id="' + id + '-w" type="text" placeholder="e.g. 8 ft"></label>' +
+          '<label class="field"><span>Length</span><input id="' + id + '-l" type="text" placeholder="e.g. 10 ft"></label>' +
+          '<label class="field"><span>Quantity</span><input id="' + id + '-qty" type="text" placeholder="1"></label>' +
+        '</div>' +
+        '<label class="field"><span>Anything else?</span><textarea id="' + id + '-msg" rows="3" placeholder="Colour changes, pile height, deadline, delivery country…"></textarea></label>' +
+        '<button class="btn btn--block" type="submit">Prepare enquiry ' + ARROW + '</button>' +
+        '<p class="fineprint">No payment is taken online. We reply with a quotation, usually within two working days.</p>' +
+      '</div>' +
+      '<div data-result></div>' +
+    '</form>';
+  }
+
+  function wireEnquiryForm(id) {
+    var form = document.getElementById(id);
+    if (!form) { return; }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = function (suffix) {
+        var el = document.getElementById(id + '-' + suffix);
+        return el ? el.value : '';
+      };
+      var msg = composeMessage([
+        ['Piece', v('subject')],
+        ['Name', v('name')],
+        ['Contact', v('contact')],
+        ['Width', v('w')],
+        ['Length', v('l')],
+        ['Quantity', v('qty')],
+        ['Notes', v('msg')]
+      ]);
+      var slot = form.querySelector('[data-result]');
+      slot.innerHTML = resultHTML(msg);
+      slot.querySelector('.result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+
+  function craftHTML() {
+    var steps = [
+      ['Design', 'The cartoon is drawn and graphed knot by knot, then scaled to your dimensions.'],
+      ['Dyeing', 'Wool and silk are hand-dyed in small lots, so each batch carries its own depth.'],
+      ['Knotting', 'Weavers tie every knot by hand at 9/9 quality — months on the loom for a single piece.'],
+      ['Finishing', 'Washing, clipping, carving and stretching bring the pile and the pattern into focus.']
+    ];
+    return '<section class="band" id="craft-section"><div class="wrap craft">' +
+      '<div>' +
+        '<img src="img/logo-lockup.png" alt="Royal Rugs — carpets, rugs and more" style="width:228px;height:auto">' +
+        '<p style="margin-top:22px;font-size:14px;line-height:1.85">A weaving house working with looms in [YOUR REGION], supplying homes, interior designers and trade buyers in [YOUR MARKETS].</p>' +
+      '</div>' +
+      '<div>' +
+        '<p class="eyebrow">How a Royal rug is made</p>' +
+        '<h2 style="font-size:clamp(34px,4.2vw,52px);margin-top:14px">Four hands, many months</h2>' +
+        '<div class="steps4">' + steps.map(function (s, i) {
+          return '<div><span class="step__no">' + ['i','ii','iii','iv'][i] + '</span><h4>' + esc(s[0]) + '</h4><p>' + esc(s[1]) + '</p></div>';
+        }).join('') + '</div>' +
+      '</div>' +
+    '</div></section>';
+  }
+
+  /* ---------------- views ---------------- */
+  function viewHome() {
+    var featured = ['r01','r06','r08','r25','r13','r30'].map(function (id) { return byId[id]; });
+    var cats = [
+      ['r01', 'Abstract &amp; modern', '19 pieces · silk, wool, bamboo silk'],
+      ['r27', 'Traditional', '3 pieces · classic floral fields'],
+      ['r26', 'Round rugs', '4 pieces · 5.0 ft to 9.7 ft across'],
+      ['r17', 'Runners', '4 pieces · up to 10.5 ft long']
+    ];
+    var points = [
+      'Any dimension, to the inch',
+      'Rectangle, round, oval, runner or free shape',
+      'Your colourway, matched to a swatch',
+      'Silk, wool, bamboo silk or a blend',
+      'Pattern re-scaled by hand, not stretched',
+      'Strike-off sample before full weaving'
+    ];
+
+    return '' +
+    '<section class="hero" id="hero" aria-label="Featured weaving">' +
+      '<div class="hero__slides">' +
+        HERO.map(function (s, i) {
+          return '<div class="hero__slide' + (i === 0 ? ' is-on' : '') + '" data-slide="' + i + '" style="background-image:url(' + s.img + ');background-position:' + s.pos + '" role="img" aria-label="' + esc(s.alt) + '"></div>';
+        }).join('') +
+      '</div>' +
+      '<div class="wrap hero__in">' +
+        '<p class="eyebrow">Hand-knotted to order · Est. [YEAR]</p>' +
+        '<h1>Floors worth<br>walking barefoot<br><em>across.</em></h1>' +
+        '<p class="hero__lede">Silk, wool and bamboo-silk rugs knotted by hand at 9/9 quality. Every piece in this collection can be re-woven to your exact dimensions, shape and palette.</p>' +
+        '<div class="hero__cta">' +
+          '<a class="btn" href="#collection">Explore the collection ' + ARROW + '</a>' +
+          '<a class="btn btn--ghost" href="#custom">Design a custom size</a>' +
+        '</div>' +
+      '</div>' +
+      '<div class="hero__arrows">' +
+        '<button class="hero__arrow" type="button" data-hero="-1" aria-label="Previous piece"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M15 4l-8 8 8 8"/></svg></button>' +
+        '<button class="hero__arrow" type="button" data-hero="1" aria-label="Next piece"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg></button>' +
+      '</div>' +
+      '<div class="hero__dots" role="tablist" aria-label="Featured pieces">' +
+        HERO.map(function (s, i) {
+          return '<button class="hero__dot" type="button" data-dot="' + i + '" role="tab" aria-current="' + (i === 0) + '" aria-label="' + esc(s.name) + '"></button>';
+        }).join('') +
+      '</div>' +
+    '</section>' +
+
+    '<section class="band--shell" style="padding-block:38px"><div class="wrap assure">' +
+      '<div><h3>Hand-knotted</h3><p>Knot by knot on the loom, never tufted</p></div>' +
+      '<div><h3>9/9 quality</h3><p>Fine knot density across the collection</p></div>' +
+      '<div><h3>Silk · Wool · Bamboo silk</h3><p>Natural fibres, hand-spun and hand-dyed</p></div>' +
+      '<div><h3>Made to your size</h3><p>Any dimension, shape or colourway</p></div>' +
+    '</div></section>' +
+
+    '<section class="band"><div class="wrap">' +
+      '<div class="section-head">' +
+        '<div><p class="eyebrow">Browse by</p><h2>The collections</h2></div>' +
+        '<a class="textlink" href="#collection">View all 30 pieces ' + ARROW + '</a>' +
+      '</div>' +
+      '<div class="grid grid--4">' + cats.map(function (c) {
+        return '<a class="card" href="#collection">' +
+          '<span class="plate"><img src="' + byId[c[0]].img + '" alt="" loading="lazy"></span>' +
+          '<span class="card__body"><span class="card__name">' + c[1] + '</span><span class="card__qlty">' + c[2] + '</span></span>' +
+        '</a>';
+      }).join('') + '</div>' +
+    '</div></section>' +
+
+    '<section class="band band--shell"><div class="wrap">' +
+      '<div class="section-head">' +
+        '<div><p class="eyebrow">On the loom now</p><h2>Recent pieces</h2></div>' +
+        '<p>Each piece below is shown in the size it was woven. Any of them can be re-made larger, smaller, round or as a runner.</p>' +
+      '</div>' +
+      '<div class="grid grid--3">' + featured.map(cardHTML).join('') + '</div>' +
+    '</div></section>' +
+
+    '<section class="band"><div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(28px,4vw,64px);align-items:center">' +
+      '<figure style="margin:0"><img src="img/banner-living.jpg" alt="A hand-knotted rug anchoring a calm, high-ceilinged living room in afternoon light" loading="lazy" style="width:100%;height:100%;max-height:460px;object-fit:cover"></figure>' +
+      '<div>' +
+        '<p class="eyebrow">Made to measure</p>' +
+        '<h2 style="font-size:clamp(32px,4vw,50px);margin-top:16px">Tell us the room.<br>We will weave to fit.</h2>' +
+        '<p style="margin-top:20px;max-width:54ch;font-size:15px;line-height:1.8">Give us a design you like and your dimensions — we re-scale the pattern by hand so the composition still reads correctly at your size. Shape, pile height, material and colourway are all open.</p>' +
+        '<div style="margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px 36px">' +
+          points.map(function (p) {
+            return '<span style="display:flex;align-items:flex-start;gap:11px;font-size:13.5px;line-height:1.6">' + TICK + '<span>' + esc(p) + '</span></span>';
+          }).join('') +
+        '</div>' +
+        '<div style="margin-top:32px"><a class="btn" href="#custom">Start a custom enquiry ' + ARROW + '</a></div>' +
+      '</div>' +
+    '</div></section>' +
+
+    '<section class="fband" style="background-image:url(img/banner-loom.jpg);background-position:center 45%"><div class="wrap fband__in">' +
+      '<h2>Every knot tied by hand</h2>' +
+      '<p>A single nine-by-twelve carries well over a million knots, and there is no machine anywhere in the process. That is why a piece takes months on the loom — and why it outlasts the room it was bought for.</p>' +
+      '<a class="btn btn--pale" href="#craft">See how it is made ' + ARROW + '</a>' +
+    '</div></section>' +
+
+    craftHTML() +
+
+    '<section class="band band--deep"><div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:clamp(28px,4vw,64px);align-items:center">' +
+      '<div>' +
+        '<h2 style="font-size:clamp(34px,4.4vw,54px)">Seen something<br>you would like woven?</h2>' +
+        '<p style="margin-top:20px;max-width:50ch;font-size:15px;line-height:1.8">Send us the design number, your size and where the rug is going. We reply with availability, lead time and a quotation — usually within two working days.</p>' +
+      '</div>' +
+      enquiryFormHTML('home-enq', { title: 'Quick enquiry', note: 'Design number, size, and where the rug is going — that is all we need to start.' }) +
+    '</div></section>';
+  }
+
+  var filterState = { shape: 'All', mat: 'All', band: 'All', q: '' };
+
+  function viewCollection() {
+    var groups = [
+      ['Shape', 'shape', ['All', 'Rectangle', 'Round', 'Runner']],
+      ['Material', 'mat', ['All', 'Silk + wool', 'Bamboo silk', 'Pure silk', 'Wool + silk']],
+      ['Size', 'band', ['All', 'Small', 'Medium', 'Large', 'Oversize']]
+    ];
+    var filtersHTML = groups.map(function (g) {
+      return '<div class="fgroup"><span class="fgroup__label">' + g[0] + '</span><div class="pills">' +
+        g[2].map(function (o) {
+          var on = filterState[g[1]] === o;
+          return '<button class="pill" type="button" data-key="' + g[1] + '" data-val="' + esc(o) + '" aria-pressed="' + on + '">' + esc(o) + '</button>';
+        }).join('') + '</div></div>';
+    }).join('');
+
+    return '' +
+    '<section class="wrap" style="padding-block:clamp(36px,5vw,64px) 30px">' +
+      '<p class="eyebrow"><a href="#home" style="color:inherit">Home</a> &nbsp;/&nbsp; Collection</p>' +
+      '<div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:20px 48px;margin-top:18px">' +
+        '<h1 style="flex:1 1 340px;font-size:clamp(42px,6vw,66px)">The collection</h1>' +
+        '<p style="flex:0 1 460px;font-size:14px;line-height:1.8">Thirty pieces currently on record, each shown in the size it was woven. Every design can be re-made in another size, shape or colourway — filter below, then send an enquiry.</p>' +
+      '</div>' +
+    '</section>' +
+
+    '<section class="band--shell" style="padding-block:26px"><div class="wrap filters">' +
+      filtersHTML +
+      '<label class="field" style="flex:0 1 250px"><span class="skip">Search the collection</span>' +
+        '<input class="search" id="q" type="search" placeholder="Search name or design no." value="' + esc(filterState.q) + '">' +
+      '</label>' +
+      '<span class="count" id="count"></span>' +
+    '</div></section>' +
+
+    '<section class="band"><div class="wrap"><div class="grid" id="results"></div></div></section>' +
+
+    '<section class="band band--shell"><div class="wrap" style="display:flex;flex-wrap:wrap;align-items:center;gap:24px 48px">' +
+      '<div style="flex:1 1 420px">' +
+        '<h2 style="font-size:clamp(30px,3.6vw,42px)">Not finding your size?</h2>' +
+        '<p style="margin-top:14px;max-width:62ch;font-size:14px;line-height:1.8">Every design here can be re-woven to your dimensions — rectangle, round, oval or runner — in your choice of material and colourway.</p>' +
+      '</div>' +
+      '<a class="btn" href="#custom">Request a custom size ' + ARROW + '</a>' +
+    '</div></section>';
+  }
+
+  function renderResults() {
+    var box = document.getElementById('results');
+    if (!box) { return; }
+    var q = filterState.q.trim().toLowerCase();
+    var list = RUGS.filter(function (r) {
+      if (filterState.shape !== 'All' && r.shape !== filterState.shape) { return false; }
+      if (filterState.mat !== 'All' && r.mat !== filterState.mat) { return false; }
+      if (filterState.band !== 'All' && r.band !== filterState.band) { return false; }
+      if (q && (r.name + ' ' + r.code + ' ' + r.cno + ' ' + r.family).toLowerCase().indexOf(q) === -1) { return false; }
+      return true;
+    });
+    box.innerHTML = list.length
+      ? list.map(cardHTML).join('')
+      : '<p style="grid-column:1/-1;padding:40px 0;font-size:15px">No pieces match those filters. <a href="#custom">Ask us for a custom size</a> instead.</p>';
+    var c = document.getElementById('count');
+    if (c) { c.textContent = list.length === RUGS.length ? '30 pieces' : list.length + ' of 30 pieces'; }
+  }
+
+  function wireCollection() {
+    renderResults();
+    var box = document.querySelector('.filters');
+    if (!box) { return; }
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('.pill');
+      if (!b) { return; }
+      filterState[b.dataset.key] = b.dataset.val;
+      box.querySelectorAll('.pill[data-key="' + b.dataset.key + '"]').forEach(function (p) {
+        p.setAttribute('aria-pressed', String(p === b));
+      });
+      renderResults();
+    });
+    var q = document.getElementById('q');
+    if (q) {
+      q.addEventListener('input', function () { filterState.q = q.value; renderResults(); });
+    }
+  }
+
+  function viewRug(r) {
+    var related = RUGS.filter(function (x) {
+      return x.id !== r.id && (x.family === r.family || x.mat === r.mat);
+    }).slice(0, 4);
+
+    var specs = [
+      ['Size as woven', r.ft + ' ft &nbsp;·&nbsp; ' + r.m + ' m'],
+      ['Quality', r.qlty],
+      ['Material', r.mat],
+      ['Shape', r.shape + ' · also woven round, oval or as a runner'],
+      ['Design no.', r.code + ' &nbsp;·&nbsp; C. no. ' + r.cno],
+      ['Lead time', '[YOUR LEAD TIME] for a made-to-order piece']
+    ];
+
+    return '' +
+    '<section class="wrap" style="padding-block:clamp(28px,4vw,44px) clamp(44px,6vw,80px)">' +
+      '<p class="eyebrow" style="margin-bottom:26px"><a href="#home" style="color:inherit">Home</a> &nbsp;/&nbsp; <a href="#collection" style="color:inherit">Collection</a> &nbsp;/&nbsp; ' + esc(r.name) + '</p>' +
+      '<div class="detail">' +
+        '<div>' +
+          '<figure class="plate" style="margin:0;aspect-ratio:auto;min-height:320px;padding:clamp(20px,3vw,40px)"><img src="' + r.img + '" alt="' + esc(r.name + ' ' + r.code + ' — ' + r.ft + ' feet, ' + r.qlty) + '"></figure>' +
+          '<div class="shots">' +
+            '<span class="plate plate--thumb" style="border-color:var(--oxblood)"><img src="' + r.img + '" alt="" loading="lazy"></span>' +
+            ['Detail shot', 'Room setting', 'Knot / back'].map(function (l) {
+              return '<span class="shot-empty">' + CAM + '<span>[' + l + ']</span></span>';
+            }).join('') +
+          '</div>' +
+        '</div>' +
+        '<div>' +
+          '<h1 style="font-size:clamp(40px,5vw,58px)">' + esc(r.name) + '</h1>' +
+          '<p class="eyebrow" style="margin-top:14px">Design no. ' + esc(r.code) + ' &nbsp;·&nbsp; ' + esc(r.family) + '</p>' +
+          '<p style="margin-top:22px;font-size:15.5px;line-height:1.8;max-width:56ch">' + esc(r.blurb) + '</p>' +
+          '<dl class="spec">' + specs.map(function (s) {
+            return '<div class="spec__row"><dt>' + s[0] + '</dt><dd>' + s[1] + '</dd></div>';
+          }).join('') + '</dl>' +
+          '<div style="margin-top:28px">' +
+            enquiryFormHTML('rug-enq', {
+              title: 'Enquire about ' + r.name,
+              note: 'Woven to order in any size. Tell us your dimensions and we will confirm price and lead time.',
+              subject: r.name + ' (' + r.code + ')'
+            }) +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+    '</section>' +
+
+    (related.length ? '<section class="band band--shell"><div class="wrap">' +
+      '<div class="section-head"><div><h2 style="font-size:clamp(30px,3.6vw,44px)">In the same family</h2></div>' +
+      '<a class="textlink" href="#collection">View all ' + ARROW + '</a></div>' +
+      '<div class="grid grid--4">' + related.map(cardHTML).join('') + '</div>' +
+    '</div></section>' : '');
+  }
+
+  /* ---------------- custom builder ---------------- */
+  var cs = { shape: 'Rectangle', unit: 'ft', w: '9', l: '12', mat: 'Silk + wool', colours: [] };
+
+  var PALETTE = [
+    ['Ivory', '#EFE7D6'], ['Charcoal', '#4A4F52'], ['Glacial blue', '#93A7B8'], ['Indigo', '#3C4C6B'],
+    ['Sage', '#9BA88C'], ['Rust', '#9C5836'], ['Oxblood', '#55020C'], ['Old gold', '#B08A4F']
+  ];
+
+  var MATERIALS = [
+    ['Silk + wool', 'The collection standard — depth with a silk sheen'],
+    ['Bamboo silk', 'High lustre, softer underfoot, lighter budget'],
+    ['Pure silk', 'Finest detail, for low-traffic rooms'],
+    ['Pure wool', 'Hard-wearing, matte, good for busy floors']
+  ];
+
+  function pillRow(key, label, opts, cur) {
+    return '<div class="fgroup"><span class="fgroup__label">' + label + '</span><div class="pills">' +
+      opts.map(function (o) {
+        return '<button class="pill" type="button" data-cs="' + key + '" data-val="' + esc(o) + '" aria-pressed="' + (cur === o) + '">' + esc(o) + '</button>';
+      }).join('') + '</div></div>';
+  }
+
+  function viewCustom() {
+    return '' +
+    '<section class="wrap" style="padding-block:clamp(36px,5vw,64px) 24px">' +
+      '<p class="eyebrow"><a href="#home" style="color:inherit">Home</a> &nbsp;/&nbsp; Custom rugs</p>' +
+      '<div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:20px 48px;margin-top:18px">' +
+        '<h1 style="flex:1 1 340px;font-size:clamp(42px,6vw,66px)">Made to measure</h1>' +
+        '<p style="flex:0 1 480px;font-size:14px;line-height:1.8">Any design in the collection can be re-woven to your dimensions, shape, material and colourway. Fill in what you know — anything you leave blank we will ask about when we reply.</p>' +
+      '</div>' +
+    '</section>' +
+
+    '<section class="band" style="padding-block:20px clamp(56px,7vw,96px)"><div class="wrap builder">' +
+      '<form class="steps" id="custom-form" novalidate>' +
+
+        '<div class="panel panel--plain step">' +
+          '<span class="step__no">Step one</span><h3>Shape and size</h3>' +
+          '<div style="margin-top:18px">' + pillRow('shape', 'Shape', ['Rectangle','Round','Oval','Runner','Other shape'], cs.shape) + '</div>' +
+          '<div class="row row--3" style="margin-top:20px">' +
+            '<label class="field"><span id="lbl-w">Width</span><input id="cs-w" type="number" min="1" step="0.1" value="' + esc(cs.w) + '"></label>' +
+            '<label class="field"><span id="lbl-l">Length</span><input id="cs-l" type="number" min="1" step="0.1" value="' + esc(cs.l) + '"></label>' +
+            '<div class="field"><span>Units</span><div class="pills">' +
+              ['ft','m'].map(function (u) {
+                return '<button class="pill" type="button" data-cs="unit" data-val="' + u + '" aria-pressed="' + (cs.unit === u) + '">' + (u === 'ft' ? 'Feet' : 'Metres') + '</button>';
+              }).join('') + '</div></div>' +
+          '</div>' +
+          '<p class="fineprint" id="conv" style="margin-top:14px"></p>' +
+        '</div>' +
+
+        '<div class="panel panel--plain step">' +
+          '<span class="step__no">Step two</span><h3>Material and quality</h3>' +
+          '<div class="matcards">' + MATERIALS.map(function (m) {
+            return '<button class="matcard" type="button" data-cs="mat" data-val="' + esc(m[0]) + '" aria-pressed="' + (cs.mat === m[0]) + '">' +
+              '<b>' + esc(m[0]) + '</b><small>' + esc(m[1]) + '</small></button>';
+          }).join('') + '</div>' +
+          '<div class="row row--2" style="margin-top:18px">' +
+            '<label class="field"><span>Knot quality</span><select id="cs-qlty">' +
+              '<option>9/9 — as the collection</option><option>Finer than 9/9</option><option>Coarser / more economical</option><option>Not sure — advise me</option>' +
+            '</select></label>' +
+            '<label class="field"><span>Pile height</span><select id="cs-pile">' +
+              '<option>Standard</option><option>Low / flat</option><option>High / plush</option><option>Carved &amp; embossed</option>' +
+            '</select></label>' +
+          '</div>' +
+        '</div>' +
+
+        '<div class="panel panel--plain step">' +
+          '<span class="step__no">Step three</span><h3>Design and colour</h3>' +
+          '<div class="row row--2" style="margin-top:18px">' +
+            '<label class="field"><span>Starting from a design</span><input id="cs-design" type="text" placeholder="Design no. — e.g. RR-718"></label>' +
+            '<label class="field"><span>Room it is going in</span><input id="cs-room" type="text" placeholder="e.g. open-plan living room"></label>' +
+          '</div>' +
+          '<div style="margin-top:20px">' +
+            '<span class="fgroup__label">Dominant colours</span>' +
+            '<div class="swatches">' + PALETTE.map(function (c) {
+              return '<button class="swatch" type="button" data-colour="' + esc(c[0]) + '" aria-label="' + esc(c[0]) + '" aria-pressed="false" style="background:' + c[1] + '"></button>';
+            }).join('') + '</div>' +
+            '<p class="fineprint" id="colour-line" style="margin-top:12px"></p>' +
+          '</div>' +
+        '</div>' +
+
+        '<div class="panel panel--plain step">' +
+          '<span class="step__no">Step four</span><h3>Where to reach you</h3>' +
+          '<div class="row row--2" style="margin-top:18px">' +
+            '<label class="field"><span>Your name</span><input id="cs-name" type="text" autocomplete="name" placeholder="Full name"></label>' +
+            '<label class="field"><span>Email</span><input id="cs-email" type="email" autocomplete="email" placeholder="you@example.com"></label>' +
+            '<label class="field"><span>Phone / WhatsApp</span><input id="cs-phone" type="tel" placeholder="Including country code"></label>' +
+            '<label class="field"><span>Delivering to</span><input id="cs-country" type="text" placeholder="City and country"></label>' +
+          '</div>' +
+          '<label class="field" style="margin-top:16px"><span>Anything else we should know?</span><textarea id="cs-notes" rows="3" placeholder="The deadline, whether this is for a project or for trade…"></textarea></label>' +
+        '</div>' +
+      '</form>' +
+
+      '<aside class="panel" id="summary">' +
+        '<p class="fgroup__label">Your enquiry so far</p>' +
+        '<div class="stage"><span class="ghost" id="ghost"></span></div>' +
+        '<p class="stage-size" id="stage-size"></p>' +
+        '<p class="stage-area" id="stage-area"></p>' +
+        '<dl class="spec" id="summary-spec"></dl>' +
+        '<button class="btn btn--block" type="submit" form="custom-form" style="margin-top:22px">Prepare custom enquiry ' + ARROW + '</button>' +
+        '<p class="fineprint" style="margin-top:14px">No payment is taken online. We reply with price, material options and lead time — usually within two working days.</p>' +
+        '<div data-result></div>' +
+      '</aside>' +
+    '</div></section>' +
+
+    '<section class="band band--shell"><div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:34px">' +
+      '<div><h3 style="font-family:var(--ff-display);font-size:26px;color:var(--ink)">Patterns are re-drawn</h3><p style="margin-top:10px;font-size:13.5px;line-height:1.75">We re-graph the design at your dimensions rather than stretching it, so borders and motifs stay in proportion.</p></div>' +
+      '<div><h3 style="font-family:var(--ff-display);font-size:26px;color:var(--ink)">Sample before you commit</h3><p style="margin-top:10px;font-size:13.5px;line-height:1.75">For a new colourway we weave a small strike-off so you can see the yarns in your own light.</p></div>' +
+      '<div><h3 style="font-family:var(--ff-display);font-size:26px;color:var(--ink)">Trade welcome</h3><p style="margin-top:10px;font-size:13.5px;line-height:1.75">Designers, architects and hospitality buyers — tell us the project and we will quote on trade terms.</p></div>' +
+    '</div></section>';
+  }
+
+  function num(v, fallback) {
+    var n = parseFloat(v);
+    return isNaN(n) || n <= 0 ? fallback : n;
+  }
+
+  function fmt(n) { return String(Math.round(n * 100) / 100); }
+
+  function updateCustom() {
+    var locked = cs.shape === 'Round';
+    var defW = cs.unit === 'ft' ? 9 : 2.75;
+    var defL = cs.unit === 'ft' ? 12 : 3.65;
+    var w = num(cs.w, defW);
+    var l = locked ? w : num(cs.l, defL);
+
+    var lw = document.getElementById('lbl-w');
+    var ll = document.getElementById('lbl-l');
+    if (lw) { lw.textContent = locked ? 'Diameter' : 'Width'; }
+    if (ll) { ll.textContent = locked ? 'Matches diameter' : 'Length'; }
+    var li = document.getElementById('cs-l');
+    if (li) { li.disabled = locked; if (locked) { li.value = fmt(w); } }
+
+    var toFt = cs.unit === 'ft' ? 1 : 3.2808;
+    var wFt = w * toFt, lFt = l * toFt;
+    var wM = cs.unit === 'ft' ? w / 3.2808 : w;
+    var lM = cs.unit === 'ft' ? l / 3.2808 : l;
+
+    var ghost = document.getElementById('ghost');
+    if (ghost) {
+      var box = 250;
+      var scale = box / Math.max(w, l);
+      ghost.style.width = Math.max(26, Math.round(w * scale)) + 'px';
+      ghost.style.height = Math.max(26, Math.round(l * scale)) + 'px';
+      ghost.style.borderRadius = cs.shape === 'Round' ? '50%' : (cs.shape === 'Oval' ? '50% / 50%' : '2px');
+    }
+
+    var headline = locked
+      ? fmt(w) + ' ' + cs.unit + ' diameter'
+      : fmt(w) + ' × ' + fmt(l) + ' ' + cs.unit;
+    var ss = document.getElementById('stage-size');
+    var sa = document.getElementById('stage-area');
+    if (ss) { ss.textContent = headline; }
+    if (sa) { sa.textContent = 'Approx. ' + Math.round(wFt * lFt) + ' sq ft of hand-knotted surface'; }
+
+    var conv = document.getElementById('conv');
+    if (conv) {
+      conv.textContent = cs.unit === 'ft'
+        ? 'That is about ' + fmt(wM) + ' × ' + fmt(lM) + ' metres.'
+        : 'That is about ' + fmt(wFt) + ' × ' + fmt(lFt) + ' feet.';
+    }
+
+    var cl = document.getElementById('colour-line');
+    if (cl) {
+      cl.textContent = cs.colours.length
+        ? 'Selected: ' + cs.colours.join(', ')
+        : 'Select any colours that should lead — or leave it to us.';
+    }
+
+    var spec = document.getElementById('summary-spec');
+    if (spec) {
+      var rows = [
+        ['Shape', cs.shape],
+        ['Size', headline],
+        ['Material', cs.mat],
+        ['Colours', cs.colours.length ? cs.colours.join(', ') : 'Open to suggestions']
+      ];
+      spec.innerHTML = rows.map(function (r) {
+        return '<div class="spec__row"><dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd></div>';
+      }).join('');
+    }
+
+    cs._headline = headline;
+  }
+
+  function onCustomClick(e) {
+    var p = e.target.closest ? e.target.closest('[data-cs]') : null;
+    if (p) {
+      var key = p.dataset.cs;
+      cs[key] = p.dataset.val;
+      main.querySelectorAll('[data-cs="' + key + '"]').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b === p));
+      });
+      updateCustom();
+      return;
+    }
+    var sw = e.target.closest ? e.target.closest('[data-colour]') : null;
+    if (sw) {
+      var name = sw.dataset.colour;
+      var at = cs.colours.indexOf(name);
+      if (at === -1) { cs.colours.push(name); } else { cs.colours.splice(at, 1); }
+      sw.setAttribute('aria-pressed', String(at === -1));
+      updateCustom();
+    }
+  }
+
+  function wireCustom() {
+    updateCustom();
+    var form = document.getElementById('custom-form');
+    if (!form) { return; }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var g = function (id) { var el = document.getElementById(id); return el ? el.value : ''; };
+      var msg = composeMessage([
+        ['Shape', cs.shape],
+        ['Size', cs._headline],
+        ['Material', cs.mat],
+        ['Knot quality', g('cs-qlty')],
+        ['Pile height', g('cs-pile')],
+        ['Starting design', g('cs-design')],
+        ['Room', g('cs-room')],
+        ['Colours', cs.colours.join(', ')],
+        ['Name', g('cs-name')],
+        ['Email', g('cs-email')],
+        ['Phone', g('cs-phone')],
+        ['Delivering to', g('cs-country')],
+        ['Notes', g('cs-notes')]
+      ]);
+      var slot = document.querySelector('#summary [data-result]');
+      slot.innerHTML = resultHTML(msg);
+      slot.querySelector('.result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+
+  function onCustomInput(e) {
+    if (e.target.id === 'cs-w') { cs.w = e.target.value; updateCustom(); }
+    if (e.target.id === 'cs-l') { cs.l = e.target.value; updateCustom(); }
+  }
+
+  function viewCraft() {
+    return '<section class="wrap" style="padding-block:clamp(36px,5vw,64px) 0">' +
+      '<p class="eyebrow"><a href="#home" style="color:inherit">Home</a> &nbsp;/&nbsp; The craft</p>' +
+    '</section>' + craftHTML() +
+    '<section class="band band--shell"><div class="wrap">' +
+      '<div class="section-head"><div><p class="eyebrow">The result</p><h2>Pieces from the loom</h2></div>' +
+      '<a class="textlink" href="#collection">View all 30 pieces ' + ARROW + '</a></div>' +
+      '<div class="grid grid--4">' + ['r08','r10','r06','r24'].map(function (id) { return cardHTML(byId[id]); }).join('') + '</div>' +
+    '</div></section>';
+  }
+
+  function viewContact() {
+    return '<section class="wrap" style="padding-block:clamp(36px,5vw,64px) clamp(44px,6vw,80px)">' +
+      '<p class="eyebrow"><a href="#home" style="color:inherit">Home</a> &nbsp;/&nbsp; Contact</p>' +
+      '<div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:20px 48px;margin-top:18px">' +
+        '<h1 style="flex:1 1 340px;font-size:clamp(42px,6vw,66px)">Talk to us</h1>' +
+        '<p style="flex:0 1 460px;font-size:14px;line-height:1.8">Enquiries about a piece in the collection, a custom size, or trade and contract work all reach the same desk.</p>' +
+      '</div>' +
+      '<div style="margin-top:46px;display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:clamp(28px,4vw,56px);align-items:start">' +
+        '<div>' +
+          '<dl class="spec" style="margin-top:0">' +
+            '<div class="spec__row"><dt>Phone</dt><dd>' + esc(CONFIG.phone) + '</dd></div>' +
+            '<div class="spec__row"><dt>Email</dt><dd>' + esc(CONFIG.email) + '</dd></div>' +
+            '<div class="spec__row"><dt>Showroom</dt><dd>' + esc(CONFIG.address) + '</dd></div>' +
+            '<div class="spec__row"><dt>Hours</dt><dd>[YOUR OPENING HOURS]</dd></div>' +
+            '<div class="spec__row"><dt>Trade</dt><dd>Designers, architects and hospitality buyers — ask for trade terms</dd></div>' +
+          '</dl>' +
+          '<p class="fineprint" style="margin-top:22px">We reply to enquiries within two working days. There is no online checkout — every piece is quoted individually, because size, material and colourway all move the price.</p>' +
+        '</div>' +
+        enquiryFormHTML('contact-enq', { title: 'Send a message', note: 'If it is about a specific piece, include its design number.' }) +
+      '</div>' +
+    '</section>';
+  }
+
+  /* ---------------- hero carousel ---------------- */
+  var heroAt = 0;
+  var heroTimer = null;
+
+  function heroShow(i) {
+    var slides = document.querySelectorAll('.hero__slide');
+    if (!slides.length) { return; }
+    heroAt = (i + HERO.length) % HERO.length;
+    slides.forEach(function (s, n) { s.classList.toggle('is-on', n === heroAt); });
+    document.querySelectorAll('.hero__dot').forEach(function (d, n) {
+      d.setAttribute('aria-current', String(n === heroAt));
+    });
+  }
+
+  function heroStop() {
+    if (heroTimer) { clearInterval(heroTimer); heroTimer = null; }
+  }
+
+  function heroStart() {
+    heroStop();
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { return; }
+    heroTimer = setInterval(function () { heroShow(heroAt + 1); }, 6500);
+  }
+
+  function wireHero() {
+    heroAt = 0;
+    heroShow(0);
+    heroStart();
+    var hero = document.getElementById('hero');
+    if (!hero) { return; }
+    hero.addEventListener('mouseenter', heroStop);
+    hero.addEventListener('mouseleave', heroStart);
+    hero.addEventListener('focusin', heroStop);
+  }
+
+  main.addEventListener('click', function (e) {
+    var step = e.target.closest ? e.target.closest('[data-hero]') : null;
+    if (step) { heroShow(heroAt + Number(step.dataset.hero)); heroStart(); return; }
+    var dot = e.target.closest ? e.target.closest('[data-dot]') : null;
+    if (dot) { heroShow(Number(dot.dataset.dot)); heroStart(); }
+  });
+
+  /* ---------------- router ---------------- */
+  function routeFor(hash) {
+    var h = (hash || '').replace(/^#/, '');
+    if (byId[h]) { return { kind: 'rug', rug: byId[h] }; }
+    if (h === 'collection' || h === 'custom' || h === 'craft' || h === 'contact') { return { kind: h }; }
+    return { kind: 'home' };
+  }
+
+  function render() {
+    var r = routeFor(location.hash);
+    heroStop();
+
+    if (r.kind === 'rug') { main.innerHTML = viewRug(r.rug); wireEnquiryForm('rug-enq'); }
+    else if (r.kind === 'collection') { main.innerHTML = viewCollection(); wireCollection(); }
+    else if (r.kind === 'custom') { main.innerHTML = viewCustom(); wireCustom(); }
+    else if (r.kind === 'craft') { main.innerHTML = viewCraft(); }
+    else if (r.kind === 'contact') { main.innerHTML = viewContact(); wireEnquiryForm('contact-enq'); }
+    else { main.innerHTML = viewHome(); wireEnquiryForm('home-enq'); wireHero(); }
+
+    var current = r.kind === 'rug' ? 'collection' : r.kind;
+    document.querySelectorAll('.nav a').forEach(function (a) {
+      if (a.dataset.route === current) { a.setAttribute('aria-current', 'page'); }
+      else { a.removeAttribute('aria-current'); }
+    });
+
+    document.getElementById('nav').classList.remove('is-open');
+    document.getElementById('burger').setAttribute('aria-expanded', 'false');
+    window.scrollTo(0, 0);
+  }
+
+  document.getElementById('burger').addEventListener('click', function () {
+    var nav = document.getElementById('nav');
+    var open = nav.classList.toggle('is-open');
+    this.setAttribute('aria-expanded', String(open));
+  });
+
+  main.addEventListener('click', onCustomClick);
+  document.addEventListener('input', onCustomInput);
+
+  window.addEventListener('hashchange', render);
+  render();
+})();
+</script>
